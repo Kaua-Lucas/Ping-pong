@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfb7m28pvdj64"]
+
+[ext_resource type="Script" uid="uid://bhescnj6sku1d" path="res://bola.gd" id="1_th56u"]
+[ext_resource type="Texture2D" uid="uid://b2uwutjx5bfy2" path="res://assets/sprites/bola.png" id="2_fxxre"]
+[ext_resource type="AudioStream" uid="uid://bfps37eq1ieok" path="res://assets/sons/impacto-barreira.wav" id="3_fxxre"]
+[ext_resource type="AudioStream" uid="uid://dpj11lbbbk0mb" path="res://assets/sons/impacto-gol.wav" id="4_wlbpi"]
+[ext_resource type="AudioStream" uid="uid://odbf5uxe872p" path="res://assets/sons/impacto-jogador.wav" id="5_th8q5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi04s"]
+
+[node name="bola" type="Area2D"]
+script = ExtResource("1_th56u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fxxre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pi04s")
+
+[node name="impacto-com-paredes" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fxxre")
+
+[node name="impacto-com-gol" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wlbpi")
+
+[node name="impacto-com-player" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_th8q5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

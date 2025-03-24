@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://ffi22cmn0g4i"]
+
+[ext_resource type="Texture2D" uid="uid://bkkp3jat0ipuk" path="res://assets/sprites/campo-roxo.png" id="1_d4wiu"]
+[ext_resource type="Texture2D" uid="uid://bpan7ibep8spf" path="res://assets/sprites/jogador.png" id="2_lvu70"]
+[ext_resource type="PackedScene" uid="uid://cqh3mjohs2lig" path="res://cenas/jogador/jogador.tscn" id="3_3qpax"]
+[ext_resource type="PackedScene" uid="uid://cfb7m28pvdj64" path="res://cenas/bola/bola.tscn" id="4_21t6f"]
+[ext_resource type="PackedScene" uid="uid://cpp2uy01radfq" path="res://cenas/colisao_de_potuacao/Colisor_de_pontuacao.tscn" id="5_fhl48"]
+[ext_resource type="FontFile" uid="uid://dljrlpn72lmou" path="res://assets/fonte/PublicPixel-z84yD.ttf" id="6_4nob2"]
+[ext_resource type="PackedScene" uid="uid://dhh3ncy8se4em" path="res://cenas/menu/menu.tscn" id="8_6i47d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x04rp"]
+font = ExtResource("6_4nob2")
+font_size = 50
+
+[node name="main" type="Node2D"]
+
+[node name="campo" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_d4wiu")
+
+[node name="LinhaDoMeio" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.5, 5.714)
+texture = ExtResource("2_lvu70")
+
+[node name="jogador" parent="." instance=ExtResource("3_3qpax")]
+position = Vector2(60, 360)
+
+[node name="jogador2" parent="." instance=ExtResource("3_3qpax")]
+position = Vector2(1220, 360)
+jogador1 = false
+
+[node name="bola" parent="." instance=ExtResource("4_21t6f")]
+position = Vector2(640, 360)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("5_fhl48")]
+position = Vector2(0, 360)
+
+[node name="staticbody2d" parent="." instance=ExtResource("5_fhl48")]
+position = Vector2(1278, 360)
+input_pickable = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -125.0
+offset_top = 20.0
+offset_right = -75.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_x04rp")
+horizontal_alignment = 1
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 75.0
+offset_top = 20.0
+offset_right = 125.0
+offset_bottom = 70.0
+grow_horizontal = 2
+text = "0"
+label_settings = SubResource("LabelSettings_x04rp")
+horizontal_alignment = 1
+
+[node name="menu" parent="." instance=ExtResource("8_6i47d")]
